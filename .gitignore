@@ -1,0 +1,6 @@
+config/config.php
+.local-dev-credentials.txt
+public/uploads/*
+!public/uploads/.htaccess
+legacy-prototype/node_modules
+.DS_Store

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>நிர்வாகப் பகுதி — TNTJ தஞ்சை வடக்கு</title>
+<link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wdth,wght@75..100,400..700&family=Noto+Serif+Tamil:wdth,wght@62.5..100,500..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div id="login" class="login" hidden>
+  <form class="login-card" id="loginForm">
+    <img src="/assets/img/logo.svg" alt="" width="64" height="64">
+    <h1>நிர்வாகி உள்நுழைவு</h1>
+    <p class="muted">TNTJ தஞ்சை வடக்கு மாவட்டம்</p>
+    <label>மின்னஞ்சல்<input type="email" name="email" required autocomplete="username"></label>
+    <label>கடவுச்சொல்<input type="password" name="password" required autocomplete="current-password"></label>
+    <label class="check"><input type="checkbox" name="remember"> இந்தக் கணினியில் நினைவில் வை</label>
+    <p class="err" id="loginErr" role="alert"></p>
+    <button class="btn" type="submit">உள்நுழை</button>
+    <a href="/" class="muted small">← இணையதளத்திற்குச் செல்</a>
+  </form>
+</div>
+
+<div id="app" class="app" hidden>
+  <aside class="sidebar" id="sidebar">
+    <a href="#/" class="side-brand"><img src="/assets/img/logo.svg" alt="" width="36" height="36"><span>TNTJ நிர்வாகம்<small>தஞ்சை வடக்கு</small></span></a>
+    <nav id="sideNav"></nav>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu" id="menuBtn" aria-label="மெனு">☰</button>
+      <h1 id="pageTitle">டாஷ்போர்டு</h1>
+      <div class="top-right">
+        <a href="/" target="_blank" class="btn btn-ghost btn-sm">🌐 தளத்தைப் பார்</a>
+        <span id="who" class="who"></span>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn">வெளியேறு</button>
+      </div>
+    </header>
+    <main id="view" class="view"></main>
+  </div>
+</div>
+
+<dialog id="modal" class="modal">
+  <form method="dialog" id="modalForm" class="modal-inner" novalidate>
+    <header class="modal-head"><h2 id="modalTitle"></h2><button value="cancel" class="icon-btn" aria-label="மூடு">✕</button></header>
+    <div id="modalBody" class="modal-body"></div>
+    <footer class="modal-foot"><p class="err" id="modalErr"></p><button value="cancel" class="btn btn-ghost">ரத்து</button><button value="save" class="btn" id="modalSave">சேமி</button></footer>
+  </form>
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "tv-tntj-web",
+  "version": "1.0.0",
+  "description": "Modern & User-Friendly Web Portal for Tamil Nadu Thowheed Jamath (TV TNTJ)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "tntj",
+    "tamil",
+    "portal"
+  ],
+  "author": "TNTJ Tech Team",
+  "license": "ISC"
+}

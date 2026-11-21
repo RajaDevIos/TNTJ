@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>தமிழ்நாடு தவ்ஹீத் ஜமாஅத் (TNTJ) | தஞ்சை வடக்கு மாவட்டம்</title>
+  <meta name="description" content="தமிழ்நாடு தவ்ஹீத் ஜமாஅத் (TNTJ) தஞ்சை வடக்கு மாவட்டத்தின் அதிகாரப்பூர்வ இணையதளம். ஏகத்துவ அழைப்புப்பணி, அவசர இரத்ததான சேவை, மதரஸாக்கள், கல்லூரிகள் மற்றும் மாவட்ட நிர்வாக விபரங்கள்.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Emergency 24/7 Blood Ticker -->
+  <div class="emergency-ticker">
+    <div class="container ticker-content">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="ticker-badge">உயிர்காக்கும் சேவை</span>
+        <span>🚨 <strong>அவசர இரத்த உதவி மையம் (24/7):</strong> தஞ்சை வடக்கு மாவட்ட இரத்ததான பிரிவு தயார் நிலையில் உள்ளது.</span>
+        <a class="ticker-link" data-target="blood">கொடையாளர்கள் விபரம் &rarr;</a>
+      </div>
+      <div>
+        <span>உதவி எண்: <strong>+91 98424 00006</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Utility Bar (Prayer Times) -->
+  <div class="utility-bar">
+    <div class="container utility-flex">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="color: #6ee7b7; font-weight: 700;">🕌 தொழுகை நேரம் (கும்பகோணம்):</span>
+        <div class="prayer-times-mini" id="prayerTimesContainer"></div>
+      </div>
+      <div style="font-size: 0.78rem; color: #94a3b8;">
+        <span>📅 ஹிஜ்ரி 1448 &bull; தஞ்சாவூர் வடக்கு மாவட்டம்</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="brand" data-target="home">
+        <div class="brand-icon">
+          TNTJ
+          <small>TV</small>
+        </div>
+        <div class="brand-info">
+          <h1>தமிழ்நாடு தவ்ஹீத் ஜமாஅத்</h1>
+          <p>தஞ்சை வடக்கு மாவட்டம் &bull; TV TNTJ Official Portal</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <button class="btn-blood-req btn-open-blood-modal" aria-label="Request Blood">
+          <span>🩸</span>
+          <span>இரத்தம் தேவை</span>
+        </button>
+        <button class="btn-mobile-menu" id="mobileToggle" aria-label="Open Navigation">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary Desktop Navigation Bar -->
+  <div class="primary-nav-bar">
+    <div class="container">
+      <nav class="nav-links-scroll" id="desktopNav">
+        <a class="nav-link active" data-target="home">🏠 முகப்பு</a>
+        <a class="nav-link" data-target="policy">📖 கொள்கை</a>
+        <a class="nav-link" data-target="dist-exec">👥 மாவட்ட நிர்வாகிகள்</a>
+        <a class="nav-link" data-target="daees">👥 மாவட்ட தாயிக்கள்</a>
+        <a class="nav-link" data-target="branches">🏢 கிளை நிர்வாகிகள்</a>
+        <a class="nav-link" data-target="colleges">🏫 பெண்கள் இஸ்லாமிய கல்லூரிகள்</a>
+        <a class="nav-link" data-target="maktab">🕌 மக்தப் மதரஸா</a>
+        <a class="nav-link" data-target="blood">🩸 இரத்ததானம் தேவை & கொடையாளர்</a>
+        <a class="nav-link" data-target="matrimonial">💍 திருமண தகவல்</a>
+        <a class="nav-link" data-target="forms">📂 படிவங்கள் & தரவிறக்கம்</a>
+        <a class="nav-link" data-target="events">🗓️ மாவட்ட நிகழ்வுகள்</a>
+        <a class="nav-link" data-target="stats">📊 மாதாந்திர புள்ளி பட்டியல்</a>
+        <a class="nav-link" data-target="contact">📞 தொடர்புக்கு</a>
+        <a class="nav-link" data-target="links">🌐 அதிகாரப்பூர்வ இணைப்புகள்</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Backdrop & Panel -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer-panel" id="mobileDrawerPanel">
+    <div class="drawer-top">
+      <div style="font-weight: 800; font-size: 1.05rem;">🧭 மெனு (Navigation)</div>
+      <button id="closeDrawer" style="background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;">✕</button>
+    </div>
+    <div class="drawer-links-list">
+      <a class="drawer-link active" data-target="home">🏠 முகப்பு</a>
+      <a class="drawer-link" data-target="policy">📖 கொள்கை</a>
+      <a class="drawer-link" data-target="dist-exec">👥 மாவட்ட நிர்வாகிகள்</a>
+      <a class="drawer-link" data-target="daees">👥 மாவட்ட தாயிக்கள்</a>
+      <a class="drawer-link" data-target="branches">🏢 கிளை நிர்வாகிகள்</a>
+      <a class="drawer-link" data-target="colleges">🏫 பெண்கள் இஸ்லாமிய கல்லூரிகள்</a>
+      <a class="drawer-link" data-target="maktab">🕌 மக்தப் மதரஸா</a>
+      <a class="drawer-link" data-target="blood">🩸 இரத்ததானம் தேவை & கொடையாளர்</a>
+      <a class="drawer-link" data-target="matrimonial">💍 திருமண தகவல்</a>
+      <a class="drawer-link" data-target="forms">📂 படிவங்கள் & தரவிறக்கம்</a>
+      <a class="drawer-link" data-target="events">🗓️ மாவட்ட நிகழ்வுகள்</a>
+      <a class="drawer-link" data-target="stats">📊 மாதாந்திர புள்ளி பட்டியல்</a>
+      <a class="drawer-link" data-target="contact">📞 தொடர்புக்கு</a>
+      <a class="drawer-link" data-target="links">🌐 அதிகாரப்பூர்வ இணைப்புகள்</a>
+    </div>
+  </aside>
+
+  <!-- Main Content Viewport -->
+  <main class="main-viewport container">
+
+    <!-- 1. HOME SECTION (Split-Studio Hero + Highlights Grid) -->
+    <section class="tab-section active" id="home">
+      <div class="hero-split-studio">
+        <div class="hero-left-pane">
+          <div class="hero-eyebrow">
+            <span>✨</span>
+            <span>தூய ஏகத்துவம் &bull; தன்னலமற்ற சமுதாய சேவை</span>
+          </div>
+          <h2 class="hero-h1">குர்ஆன், சுன்னா வழியில் தூய இஸ்லாமிய எழுச்சி!</h2>
+          <p class="hero-p">
+            தமிழ்நாடு தவ்ஹீத் ஜமாஅத் (TNTJ) தஞ்சை வடக்கு மாவட்டத்தின் அதிகாரப்பூர்வ இணையதளம். ஏகத்துவ பிரச்சாரம், 24 மணி நேர உயிர்காக்கும் இரத்ததான சேவை, மகளிர் கல்லூரிகள், மக்தப் மதரஸாக்கள் மற்றும் கிளை நிர்வாகங்களை ஒருங்கிணைக்கும் நவீன தளம்.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn-blood-req btn-open-blood-modal">
+              🩸 அவசர இரத்தம் கோர
+            </button>
+            <button class="btn-primary" data-target="blood">
+              🔍 இரத்த கொடையாளர்கள்
+            </button>
+            <button class="btn-outline" data-target="events">
+              🗓️ மாவட்ட நிகழ்வுகள்
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-right-pane">
+          <div>
+            <span class="badge" style="background: rgba(255, 255, 255, 0.2); color: #ffffff;">தஞ்சை வடக்கு மாவட்டம்</span>
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-top: 10px; line-height: 1.3;">
+              சமுதாய விழிப்புணர்வு மற்றும் ஏகத்துவப் பணிகள்
+            </h3>
+          </div>
+
+          <div class="portal-highlights-card">
+            <div style="font-weight: 700; font-size: 0.9rem; color: #a7f3d0;">📊 மாவட்ட களப்பணி விவரங்கள்:</div>
+            <div class="highlight-stat-grid">
+              <div class="stat-item">
+                <strong>45+</strong>
+                <span>செயல்படும் கிளைகள்</span>
+              </div>
+              <div class="stat-item">
+                <strong>2,400+</strong>
+                <span>ஆண்டு இரத்ததானம்</span>
+              </div>
+              <div class="stat-item">
+                <strong>15+</strong>
+                <span>மக்தப் மதரஸாக்கள்</span>
+              </div>
+              <div class="stat-item">
+                <strong>100%</strong>
+                <span>வரதட்சணை எதிர்ப்பு</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Feature Cards -->
+      <div class="section-headline">
+        <div>
+          <h2>⚡ விரைவு சேவைகள் (Quick Access)</h2>
+          <p>மாவட்டத்தின் முதன்மை சேவைகளையும் தகவல்களையும் ஒரே கிளிக்கில் அணுகவும்</p>
+        </div>
+      </div>
+
+      <div class="cards-grid-3">
+        <div class="portal-card" style="cursor: pointer;" data-target="blood">
+          <div class="portal-card-header">
+            <div style="font-size: 2rem;">🩸</div>
+            <span class="badge badge-red">24/7 தயார்</span>
+          </div>
+          <h3 class="portal-card-title">இரத்ததான சேவை & கொடையாளர்</h3>
+          <p class="portal-card-desc">தஞ்சை, கும்பகோணம், பாபநாசம் அரசு மருத்துவமனைகளுக்கு அவசர குருதிக்கொடையாளர்கள் தேடுதல் மற்றும் பதிவு.</p>
+          <span style="color: var(--crimson-600); font-weight: 700; font-size: 0.88rem; margin-top: auto;">கொடையாளர்களைத் தேட &rarr;</span>
+        </div>
+
+        <div class="portal-card" style="cursor: pointer;" data-target="colleges">
+          <div class="portal-card-header">
+            <div style="font-size: 2rem;">🏫</div>
+            <span class="badge badge-emerald">மகளிர் கல்வி</span>
+          </div>
+          <h3 class="portal-card-title">பெண்கள் இஸ்லாமிய கல்லூரிகள்</h3>
+          <p class="portal-card-desc">அன்னை கதீஜா & அன்னை ஆயிஷா மகளிர் அரபிக் கல்லூரிகள். ஆலிமா, ஃபளீலா பட்டயப்படிப்புகள் மற்றும் விடுதி விபரங்கள்.</p>
+          <span style="color: var(--primary-700); font-weight: 700; font-size: 0.88rem; margin-top: auto;">கல்லூரி விபரம் &rarr;</span>
+        </div>
+
+        <div class="portal-card" style="cursor: pointer;" data-target="matrimonial">
+          <div class="portal-card-header">
+            <div style="font-size: 2rem;">💍</div>
+            <span class="badge badge-amber">நபிவழி நிக்காஹ்</span>
+          </div>
+          <h3 class="portal-card-title">திருமண தகவல் வழிகாட்டல்</h3>
+          <p class="portal-card-desc">வரதட்சணை இல்லாத, எளிமையான முறையில் திருமணம் முடிக்க விரும்பும் மணமக்கள் வரன்கள் வழிகாட்டல் மையம்.</p>
+          <span style="color: var(--accent-gold); font-weight: 700; font-size: 0.88rem; margin-top: auto;">வரன்களைப் பார்வையிட &rarr;</span>
+        </div>
+
+        <div class="portal-card" style="cursor: pointer;" data-target="maktab">
+          <div class="portal-card-header">
+            <div style="font-size: 2rem;">🕌</div>
+            <span class="badge badge-indigo">குர்ஆன் கல்வி</span>
+          </div>
+          <h3 class="portal-card-title">மக்தப் மதரஸாக்கள்</h3>
+          <p class="portal-card-desc">கிளை வாரியாக சிறுவர் சிறுமியர்களுக்கு மாலை நேர தஜ்வீத் முறை குர்ஆன் கல்வி மற்றும் நபிவழி ஒழுக்கப்பயிற்சி.</p>
+          <span style="color: #4338ca; font-weight: 700; font-size: 0.88rem; margin-top: auto;">மதரஸா விபரங்கள் &rarr;</span>
+        </div>
+
+        <div class="portal-card" style="cursor: pointer;" data-target="events">
+          <div class="portal-card-header">
+            <div style="font-size: 2rem;">🗓️</div>
+            <span class="badge badge-emerald">நிகழ்ச்சி நிரல்</span>
+          </div>
+          <h3 class="portal-card-title">மாவட்ட நிகழ்வுகள்</h3>
+          <p class="portal-card-desc">பொதுக்கூட்டங்கள், குடும்பவியல் பயிலரங்குகள், மருத்துவ முகாம்கள் மற்றும் தர்பியா நிகழ்ச்சிகளின் கால அட்டவணை.</p>
+          <span style="color: var(--primary-700); font-weight: 700; font-size: 0.88rem; margin-top: auto;">நிகழ்ச்சிகளைப் பார்க்க &rarr;</span>
+        </div>
+
+        <div class="portal-card" style="cursor: pointer;" data-target="forms">
+          <div class="portal-card-header">
+            <div style="font-size: 2rem;">📂</div>
+            <span class="badge badge-emerald">பதிவிறக்கம்</span>
+          </div>
+          <h3 class="portal-card-title">படிவங்கள் & தரவிறக்கம்</h3>
+          <p class="portal-card-desc">ஜமாஅத் உறுப்பினர் படிவம், திருமண தகவல் படிவம், இரத்ததான பதிவு படிவங்களை உடனடியாக தரவிறக்கம் செய்யவும்.</p>
+          <span style="color: var(--primary-700); font-weight: 700; font-size: 0.88rem; margin-top: auto;">படிவங்கள் பதிவிறக்க &rarr;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. POLICY SECTION -->
+    <section class="tab-section" id="policy">
+      <div class="section-headline">
+        <div>
+          <h2>📖 கொள்கை விளக்கம் (Ideology & Principles)</h2>
+          <p>குர்ஆன் மற்றும் ஆதாரப்பூர்வமான சுன்னாவின் அடிப்படையில் தமிழ்நாடு தவ்ஹீத் ஜமாஅத்தின் அடிப்படைக் கோட்பாடுகள்</p>
+        </div>
+      </div>
+      <div id="policyList"></div>
+    </section>
+
+    <!-- 3. DISTRICT EXECUTIVES -->
+    <section class="tab-section" id="dist-exec">
+      <div class="section-headline">
+        <div>
+          <h2>👥 மாவட்ட நிர்வாகிகள் (District Executives)</h2>
+          <p>தஞ்சை வடக்கு மாவட்ட தலைமை பொறுப்பாளர்கள் மற்றும் தொடர்பு எண்கள்</p>
+        </div>
+      </div>
+      <div class="cards-grid-3" id="distExecGrid"></div>
+    </section>
+
+    <!-- 4. DISTRICT DAEES -->
+    <section class="tab-section" id="daees">
+      <div class="section-headline">
+        <div>
+          <h2>👥 மாவட்ட தாயிக்கள் (Islamic Preachers & Scholars)</h2>
+          <p>மார்க்க அறிஞர்கள், அழைப்பாளர்கள் மற்றும் தர்பியா பயிற்றுனர்கள்</p>
+        </div>
+      </div>
+      <div class="cards-grid-3" id="daeesGrid"></div>
+    </section>
+
+    <!-- 5. BRANCH EXECUTIVES -->
+    <section class="tab-section" id="branches">
+      <div class="section-headline">
+        <div>
+          <h2>🏢 கிளை நிர்வாகிகள் (Branch Executives)</h2>
+          <p>தஞ்சை வடக்கு மாவட்டத்தில் செயல்படும் அனைத்து கிளைகளின் பொறுப்பாளர்கள் பட்டியல்</p>
+        </div>
+      </div>
+
+      <div class="filter-search-container">
+        <div class="filter-control-group">
+          <label style="font-weight: 700; font-size: 0.9rem; white-space: nowrap;">வட்டம் (Taluk):</label>
+          <select id="branchTalukFilter" class="select-dropdown">
+            <option value="all">அனைத்து வட்டங்கள்</option>
+            <option value="கும்பகோணம்">கும்பகோணம்</option>
+            <option value="பாபநாசம்">பாபநாசம்</option>
+            <option value="திருவிடைமருதூர்">திருவிடைமருதூர்</option>
+          </select>
+        </div>
+        <div class="filter-control-group" style="flex: 2;">
+          <input type="text" id="branchSearchInput" class="input-text" placeholder="🔍 கிளை பெயர், தலைவர் அல்லது செயலாளர் பெயரை தேட...">
+        </div>
+      </div>
+
+      <div class="modern-table-card">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">எண்</th>
+              <th>கிளையின் பெயர்</th>
+              <th>வட்டம்</th>
+              <th>கிளைத் தலைவர்</th>
+              <th>கிளைச் செயலாளர்</th>
+              <th>தொடர்பு எண்</th>
+            </tr>
+          </thead>
+          <tbody id="branchTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. COLLEGES -->
+    <section class="tab-section" id="colleges">
+      <div class="section-headline">
+        <div>
+          <h2>🏫 பெண்கள் இஸ்லாமிய கல்லூரிகள் (Women's Islamic Colleges)</h2>
+          <p>பாதுகாப்பான சூழலில் பெண்களுக்கான இஸ்லாமிய உயர்கல்வி நிறுவனங்கள்</p>
+        </div>
+      </div>
+      <div class="cards-grid-3" id="collegesGrid"></div>
+    </section>
+
+    <!-- 7. MAKTAB MADRASA -->
+    <section class="tab-section" id="maktab">
+      <div class="section-headline">
+        <div>
+          <h2>🕌 மக்தப் மதரஸாக்கள் (Maktab Madrasa)</h2>
+          <p>சிறுவர் சிறுமியர்களுக்கான மாலை நேர குர்ஆன் மற்றும் நற்பண்பு பயிற்சி வகுப்புகள்</p>
+        </div>
+      </div>
+      <div class="cards-grid-3" id="maktabGrid"></div>
+    </section>
+
+    <!-- 8. BLOOD DONATION SECTION -->
+    <section class="tab-section" id="blood">
+      <div class="section-headline">
+        <div>
+          <h2>🩸 இரத்ததானம் தேவை & கொடையாளர் பட்டியல் (Blood Donors)</h2>
+          <p>24 மணி நேரமும் செயல்படும் அவசர இரத்ததான தன்னார்வ கொடையாளர்கள் தரவுத்தளம்</p>
+        </div>
+        <button class="btn-blood-req btn-open-blood-modal">
+          ➕ அவசர இரத்தம் கோர
+        </button>
+      </div>
+
+      <div class="filter-search-container">
+        <div class="filter-control-group">
+          <label style="font-weight: 700; font-size: 0.9rem; white-space: nowrap;">இரத்தப் பிரிவு:</label>
+          <select id="bloodFilterGroup" class="select-dropdown">
+            <option value="all">அனைத்து இரத்தப்பிரிவுகள்</option>
+            <option value="O+">O+</option>
+            <option value="A+">A+</option>
+            <option value="B+">B+</option>
+            <option value="AB+">AB+</option>
+            <option value="O-">O- (அரிதான வகை)</option>
+            <option value="A-">A-</option>
+            <option value="B-">B-</option>
+            <option value="AB-">AB-</option>
+          </select>
+        </div>
+        <div class="filter-control-group" style="flex: 2;">
+          <input type="text" id="bloodSearchInput" class="input-text" placeholder="🔍 கொடையாளர் பெயர் அல்லது கிளை பெயர் மூலம் தேட...">
+        </div>
+      </div>
+
+      <div class="cards-grid-3" id="bloodDonorsGrid"></div>
+    </section>
+
+    <!-- 9. MATRIMONIAL SECTION -->
+    <section class="tab-section" id="matrimonial">
+      <div class="section-headline">
+        <div>
+          <h2>💍 திருமண தகவல் மையம் (Matrimonial Information)</h2>
+          <p>வரதட்சணை வாங்குவதும் கொடுப்பதும் ஹராம்! எளிமையான நபிவழி நிக்காஹ்விற்கான வழிகாட்டல்</p>
+        </div>
+      </div>
+      <div class="cards-grid-3" id="matrimonialGrid"></div>
+    </section>
+
+    <!-- 10. FORMS & DOWNLOADS -->
+    <section class="tab-section" id="forms">
+      <div class="section-headline">
+        <div>
+          <h2>📂 படிவங்கள் & தரவிறக்கம் (Forms & Downloads)</h2>
+          <p>அனைத்து அதிகாரப்பூர்வ உறுப்பினர் மற்றும் சேவை விண்ணப்பப் படிவங்கள்</p>
+        </div>
+      </div>
+      <div id="formsList"></div>
+    </section>
+
+    <!-- 11. DISTRICT EVENTS -->
+    <section class="tab-section" id="events">
+      <div class="section-headline">
+        <div>
+          <h2>🗓️ மாவட்ட நிகழ்வுகள் (Upcoming District Events)</h2>
+          <p>தஞ்சை வடக்கு மாவட்டத்தின் பொதுக்கூட்டங்கள் மற்றும் தர்பியா நிகழ்ச்சிகள்</p>
+        </div>
+      </div>
+      <div id="eventsList"></div>
+    </section>
+
+    <!-- 12. MONTHLY STATS -->
+    <section class="tab-section" id="stats">
+      <div class="section-headline">
+        <div>
+          <h2>📊 மாதாந்திர புள்ளி பட்டியல் (Monthly Scorecard & Statistics)</h2>
+          <p>மாவட்டம் மற்றும் கிளைகளின் மாதாந்திர செயல்பாட்டு களப்பணி அறிக்கைகள்</p>
+        </div>
+      </div>
+
+      <div class="modern-table-card">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>மாதம்</th>
+              <th>அழைப்புப்பணி கூட்டங்கள்</th>
+              <th>இரத்ததான யூனிட்டுகள்</th>
+              <th>மக்தப் மாணவர்கள்</th>
+              <th>நடைபெற்ற நிக்காஹ்</th>
+              <th>நிவாரண நல நிதி</th>
+            </tr>
+          </thead>
+          <tbody id="statsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 13. CONTACT US -->
+    <section class="tab-section" id="contact">
+      <div class="section-headline">
+        <div>
+          <h2>📞 தொடர்புக்கு (Contact Us)</h2>
+          <p>மாவட்ட தலைமை அலுவலக முகவரி மற்றும் உதவி எண்கள்</p>
+        </div>
+      </div>
+
+      <div class="cards-grid-3">
+        <div class="portal-card" style="border-top: 5px solid var(--primary-800);">
+          <h3 class="portal-card-title">தஞ்சை வடக்கு மாவட்ட மர்கஸ்</h3>
+          <p class="portal-card-desc" style="margin-top: 8px;">
+            தமிழ்நாடு தவ்ஹீத் ஜமாஅத் (TNTJ),<br>
+            மாவட்ட தலைமை அலுவலகம்,<br>
+            மெயின் ரோடு, கும்பகோணம் - 612 001,<br>
+            தஞ்சாவூர் மாவட்டம், தமிழ்நாடு.
+          </p>
+          <div style="font-size: 0.9rem; margin-top: 14px; line-height: 1.8;">
+            <p>🏢 <strong>அலுவலக தொலைபேசி:</strong> 0435 - 2400010</p>
+            <p>📱 <strong>மாவட்ட செயலாளர்:</strong> +91 98424 00002</p>
+            <p>🩸 <strong>அவசர இரத்ததானம்:</strong> +91 98424 00006</p>
+            <p>✉️ <strong>மின்னஞ்சல்:</strong> contact@tvtntj.net</p>
+          </div>
+        </div>
+
+        <div class="portal-card" style="border-top: 5px solid var(--crimson-600);">
+          <h3 class="portal-card-title">அவசர மருத்துவ உதவி மையம்</h3>
+          <p class="portal-card-desc" style="margin-top: 8px;">
+            கும்பகோணம் மற்றும் தஞ்சாவூர் அரசு & தனியார் மருத்துவமனைகளில் அனுமதிக்கப்பட்டுள்ள நோயாளிகளுக்கு அவசர இரத்த உதவிக்கு தொடர்பு கொள்ளவும்.
+          </p>
+          <div style="margin-top: auto;">
+            <a href="tel:+919842400006" class="btn-blood-req" style="width: 100%; justify-content: center;">
+              📞 +91 98424 00006 அழைக்க
+            </a>
+          </div>
+        </div>
+
+        <div class="portal-card" style="border-top: 5px solid var(--accent-gold);">
+          <h3 class="portal-card-title">திருமண தகவல் வழிகாட்டல்</h3>
+          <p class="portal-card-desc" style="margin-top: 8px;">
+            வரதட்சணை இல்லாத எளிய நபிவழி திருமண வழிகாட்டல் மற்றும் ஆலோசனைகளுக்கு மாவட்ட வழிகாட்டல் குழுவை அணுகவும்.
+          </p>
+          <div style="margin-top: auto;">
+            <a href="tel:+919842400005" class="btn-primary" style="width: 100%; justify-content: center; background: var(--accent-gold);">
+              📞 +91 98424 00005 அழைக்க
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. OFFICIAL LINKS -->
+    <section class="tab-section" id="links">
+      <div class="section-headline">
+        <div>
+          <h2>🌐 அதிகாரப்பூர்வ இணைப்புகள் (Official Links)</h2>
+          <p>தமிழ்நாடு தவ்ஹீத் ஜமாஅத் மாநில தலைமையகம் மற்றும் அதிகாரப்பூர்வ இணையதளங்கள்</p>
+        </div>
+      </div>
+      <div class="cards-grid-3" id="officialLinksGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- Blood Request Modal Dialog -->
+  <div class="modal-overlay" id="bloodRequestModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+          <span>🩸</span>
+          <span>அவசர இரத்த உதவி கோரிக்கை</span>
+        </div>
+        <button id="closeBloodModal" style="background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+
+      <form id="bloodRequestForm" class="modal-body">
+        <div class="form-group">
+          <label>நோயாளி பெயர் (Patient Name):</label>
+          <input type="text" id="reqPatientName" class="input-text" placeholder="எ.கா: முஹம்மது அலி" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>தேவையான இரத்தப்பிரிவு:</label>
+            <select id="reqBloodGroup" class="select-dropdown" required>
+              <option value="O+">O+ (பாசிட்டிவ்)</option>
+              <option value="A+">A+ (பாசிட்டிவ்)</option>
+              <option value="B+">B+ (பாசிட்டிவ்)</option>
+              <option value="AB+">AB+ (பாசிட்டிவ்)</option>
+              <option value="O-">O- (நெகட்டிவ்)</option>
+              <option value="A-">A- (நெகட்டிவ்)</option>
+              <option value="B-">B- (நெகட்டிவ்)</option>
+              <option value="AB-">AB- (நெகட்டிவ்)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>யூனிட்டுகள் எண்ணிக்கை:</label>
+            <input type="number" id="reqUnits" class="input-text" value="1" min="1" max="10" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>மருத்துவமனை பெயர் & ஊர்:</label>
+          <input type="text" id="reqHospital" class="input-text" placeholder="எ.கா: அரசு மருத்துவமனை, கும்பகோணம்" required>
+        </div>
+
+        <div class="form-group">
+          <label>தொடர்பு கொள்ள வேண்டிய எண் (Bystander Phone):</label>
+          <input type="tel" id="reqContactPhone" class="input-text" placeholder="எ.கா: 9842400000" required>
+        </div>
+
+        <button type="submit" class="btn-blood-req" style="width: 100%; justify-content: center; padding: 12px; margin-top: 10px;">
+          🚨 அவசர கோரிக்கையை சமர்ப்பிக்க (WhatsApp வழியாக)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modern Portal Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>தமிழ்நாடு தவ்ஹீத் ஜமாஅத் (TNTJ)</h3>
+          <p style="font-size: 0.92rem; line-height: 1.7; color: #94a3b8; margin-bottom: 16px;">
+            தஞ்சை வடக்கு மாவட்டம் &bull; குர்ஆன், சுன்னா வழியில் ஏகத்துவத்தை நிலைநாட்டி, மூடநம்பிக்கைகளை ஒழித்து, மனிதநேய பணிகளை அர்ப்பணிப்புடன் முன்னெடுக்கும் இயக்கம்.
+          </p>
+          <div style="font-size: 0.82rem; color: #6ee7b7; font-weight: 700;">
+            அலுவலகம்: கும்பகோணம், தஞ்சாவூர் வடக்கு மாவட்டம்.
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>முக்கிய பக்கங்கள்</h3>
+          <ul>
+            <li><a data-target="home">முகப்பு பக்கம்</a></li>
+            <li><a data-target="policy">கொள்கை விளக்கம்</a></li>
+            <li><a data-target="blood">இரத்ததான சேவை</a></li>
+            <li><a data-target="colleges">மகளிர் கல்லூரிகள்</a></li>
+            <li><a data-target="maktab">மக்தப் மதரஸா</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>சேவைகள்</h3>
+          <ul>
+            <li><a data-target="matrimonial">திருமண தகவல் மையம்</a></li>
+            <li><a data-target="forms">படிவங்கள் பதிவிறக்கம்</a></li>
+            <li><a data-target="events">நிகழ்ச்சி அட்டவணை</a></li>
+            <li><a data-target="branches">கிளை நிர்வாகிகள்</a></li>
+            <li><a data-target="stats">மாதாந்திர புள்ளிவிவரம்</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>அவசர தொடர்பு</h3>
+          <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.7; margin-bottom: 12px;">
+            மாவட்ட மர்கஸ்: 0435 - 2400010<br>
+            இரத்ததான உதவி: +91 98424 00006<br>
+            மின்னஞ்சல்: contact@tvtntj.net
+          </p>
+          <button class="btn-blood-req btn-open-blood-modal" style="font-size: 0.8rem; padding: 7px 14px;">
+            🚨 அவசர இரத்தம் தேவை
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; 2026 தமிழ்நாடு தவ்ஹீத் ஜமாஅத் (TNTJ) &bull; தஞ்சை வடக்கு மாவட்டம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
+        </div>
+        <div>
+          வடிவமைப்பு: TNTJ Tech Team &bull; Modern Web Standards
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
