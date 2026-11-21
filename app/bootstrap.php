@@ -11,6 +11,7 @@ if (!is_file($configFile) && (getenv('DB_HOST') || getenv('DATABASE_URL') || get
     $configFile = BASE_PATH . '/config/config.env.php';
 }
 if (!is_file($configFile)) {
+    if (PHP_SAPI === 'cli') { fwrite(STDERR, "No configuration: create config/config.php or set MYSQL_URL / DB_* environment variables.\n"); exit(1); }
     http_response_code(500);
     exit('config/config.php missing — copy config/config.example.php and fill it in, or set DB_* environment variables.');
 }

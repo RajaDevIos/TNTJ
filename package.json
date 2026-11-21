@@ -1,0 +1,10 @@
+{
+  "name": "tv-tntj-web",
+  "version": "2.0.0",
+  "description": "Tamil Nadu Thowheed Jamath (TV TNTJ)",
+  "scripts": {
+    "start": "php -S localhost:8080 -t public public/index.php",
+    "dev": "php -S localhost:8080 -t public public/index.php",
+    "start:legacy": "node legacy-prototype/server.js"
+  }
+}
