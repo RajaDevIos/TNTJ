@@ -65,6 +65,8 @@ legacy-prototype/      the earlier static HTML/Node prototype (not used)
 
 ## Install (production, cPanel or VPS)
 
+To run it behind **Netlify** on a Docker host (Railway, Render…), see [DEPLOY.md](DEPLOY.md).
+
 1. Create a MySQL 8 / MariaDB 10.6+ database and user (utf8mb4).
 2. Upload the project. Point the domain's **document root to `public/`** (on cPanel: set the domain's root to `.../public`, or upload `public/*` into `public_html` and the rest one level above it).
 3. `cp config/config.example.php config/config.php` and fill in DB details and `app_url`. Keep `debug => false`.

@@ -1,0 +1,8 @@
+.git
+config/config.php
+.local-dev-credentials.txt
+legacy-prototype
+public/uploads/*
+!public/uploads/.htaccess
+.DS_Store
+.claude

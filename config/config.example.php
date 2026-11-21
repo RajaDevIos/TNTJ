@@ -4,6 +4,8 @@ return [
     'app_url'   => 'https://www.tvtntj.net',   // no trailing slash
     'debug'     => false,
     'timezone'  => 'Asia/Kolkata',
+    // true when visitors reach the site through Netlify (or another proxy / CDN)
+    'trust_proxy' => false,
 
     'db' => [
         'host'    => '127.0.0.1',

@@ -1,0 +1,12 @@
+# Netlify serves the domain; the PHP site runs on a PHP host and Netlify forwards every request to it.
+# 1. Deploy the PHP app (see DEPLOY.md) and copy its address, e.g. https://tntj-production.up.railway.app
+# 2. Replace BACKEND_URL below with that address (no trailing slash), commit and push.
+[build]
+  publish = "netlify"
+  command = "echo 'No build: Netlify forwards requests to the PHP host'"
+
+[[redirects]]
+  from = "/*"
+  to = "BACKEND_URL/:splat"
+  status = 200
+  force = true

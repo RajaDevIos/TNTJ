@@ -4,12 +4,26 @@ declare(strict_types=1);
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', __DIR__);
 
+// Settings come from config/config.php, or (on container hosts such as Railway or Render)
+// from environment variables — see config/config.env.php.
 $configFile = BASE_PATH . '/config/config.php';
+if (!is_file($configFile) && (getenv('DB_HOST') || getenv('DATABASE_URL') || getenv('MYSQL_URL') || getenv('MYSQLHOST'))) {
+    $configFile = BASE_PATH . '/config/config.env.php';
+}
 if (!is_file($configFile)) {
     http_response_code(500);
-    exit('config/config.php missing — copy config/config.example.php and fill it in.');
+    exit('config/config.php missing — copy config/config.example.php and fill it in, or set DB_* environment variables.');
 }
 $GLOBALS['config'] = require $configFile;
+
+// Behind Netlify (or another proxy) the visitor's IP and https arrive in forwarded headers.
+if (config('trust_proxy')) {
+    $fwd = $_SERVER['HTTP_X_NF_CLIENT_CONNECTION_IP'] ?? trim(explode(',', (string)($_SERVER['HTTP_X_FORWARDED_FOR'] ?? ''))[0]);
+    if ($fwd !== '' && filter_var($fwd, FILTER_VALIDATE_IP)) $_SERVER['REMOTE_ADDR'] = $fwd;
+    if (strtolower((string)($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '')) === 'https') $_SERVER['HTTPS'] = 'on';
+}
+// Session cookie: http-only, same-site, secure on https
+if (PHP_SAPI !== 'cli') session_set_cookie_params(['httponly' => true, 'samesite' => 'Lax', 'secure' => !empty($_SERVER['HTTPS'])]);
 date_default_timezone_set(config('timezone', 'Asia/Kolkata'));
 mb_internal_encoding('UTF-8');
 
