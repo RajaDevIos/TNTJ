@@ -24,6 +24,13 @@ for v in MYSQL_URL DATABASE_URL MYSQL_PRIVATE_URL MYSQL_PUBLIC_URL DB_HOST MYSQL
   echo "env $v: $s"
 done
 
+case "$MYSQL_URL$DATABASE_URL" in
+  ""|mysql://*@*) ;;
+  *) echo "!! MYSQL_URL / DATABASE_URL is not a mysql://user:pass@host/db address. The reference probably points at a"
+     echo "!! service that does not exist: add a MySQL database to THIS project and set MYSQL_URL = \${{MySQL.MYSQL_URL}}"
+     echo "!! (use the database service's exact name)." ;;
+esac
+
 # Create tables / apply migrations; retry while the database is still starting
 if [ -z "${MYSQL_URL}${DATABASE_URL}${DB_HOST}${MYSQLHOST}" ]; then
   echo "!! No database settings: add MYSQL_URL = \${{MySQL.MYSQL_URL}} in the service's Variables (see DEPLOY.md)"
