@@ -16,7 +16,15 @@ chown -R www-data:www-data /var/www/html/public/uploads 2>/dev/null || true
 # Create tables / apply migrations; retry while the database is still starting
 if [ -z "${MYSQL_URL}${DATABASE_URL}${DB_HOST}${MYSQLHOST}" ]; then
   echo "!! No database settings: add MYSQL_URL = \${{MySQL.MYSQL_URL}} in the service's Variables (see DEPLOY.md)"
-elif [ "${SKIP_DB_INSTALL:-0}" != "1" ]; then
+else
+  # Write the settings to config/config.php so Apache's PHP reads them from a file
+  # (environment variables are not always passed through to mod_php).
+  php -r '$c = require "/var/www/html/config/config.env.php"; file_put_contents("/var/www/html/config/config.php", "<?php\n// Written at container start from environment variables. Do not edit.\nreturn " . var_export($c, true) . ";\n");'
+  chown www-data:www-data /var/www/html/config/config.php && chmod 640 /var/www/html/config/config.php
+  echo "Config written (database host: $(php -r '$c = require "/var/www/html/config/config.php"; echo $c["db"]["host"];'))"
+fi
+
+if [ -f /var/www/html/config/config.php ] && [ "${SKIP_DB_INSTALL:-0}" != "1" ]; then
   n=0
   until php /var/www/html/scripts/install_db.php; do
     n=$((n+1)); [ "$n" -ge 10 ] && { echo "Database not reachable; starting anyway"; break; }
