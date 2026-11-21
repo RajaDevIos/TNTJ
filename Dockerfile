@@ -7,7 +7,8 @@ RUN docker-php-ext-install pdo_mysql \
  && a2enmod rewrite headers \
  && sed -ri 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf \
  && printf '<Directory /var/www/html/public>\n  AllowOverride All\n  Require all granted\n</Directory>\n' > /etc/apache2/conf-available/tntj.conf \
- && a2enconf tntj \
+ && echo 'ServerName localhost' > /etc/apache2/conf-available/servername.conf \
+ && a2enconf tntj servername \
  && printf 'upload_max_filesize=12M\npost_max_size=14M\nexpose_php=Off\ndate.timezone=Asia/Kolkata\n' > /usr/local/etc/php/conf.d/tntj.ini
 
 WORKDIR /var/www/html
