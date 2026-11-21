@@ -13,6 +13,17 @@ sed -ri "s/<VirtualHost \*:[0-9]+>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-
 chown -R www-data:www-data /var/www/html/public/uploads 2>/dev/null || true
 [ -f /var/www/html/public/uploads/.htaccess ] || cp /var/www/html/docker/uploads.htaccess /var/www/html/public/uploads/.htaccess 2>/dev/null || true
 
+# Railway's MySQL also offers MYSQL_PRIVATE_URL / MYSQL_PUBLIC_URL; use them when MYSQL_URL is absent
+[ -z "$MYSQL_URL" ] && [ -n "$MYSQL_PRIVATE_URL" ] && export MYSQL_URL="$MYSQL_PRIVATE_URL"
+[ -z "$MYSQL_URL" ] && [ -n "$MYSQL_PUBLIC_URL" ] && export MYSQL_URL="$MYSQL_PUBLIC_URL"
+
+# Which database variables reached the container (names only, never values)
+for v in MYSQL_URL DATABASE_URL MYSQL_PRIVATE_URL MYSQL_PUBLIC_URL DB_HOST MYSQLHOST MYSQLUSER MYSQLDATABASE; do
+  eval "val=\${$v-__unset__}"
+  if [ "$val" = "__unset__" ]; then s="not set"; elif [ -z "$val" ]; then s="SET BUT EMPTY (check the reference)"; else s="ok"; fi
+  echo "env $v: $s"
+done
+
 # Create tables / apply migrations; retry while the database is still starting
 if [ -z "${MYSQL_URL}${DATABASE_URL}${DB_HOST}${MYSQLHOST}" ]; then
   echo "!! No database settings: add MYSQL_URL = \${{MySQL.MYSQL_URL}} in the service's Variables (see DEPLOY.md)"
